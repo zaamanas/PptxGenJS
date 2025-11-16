@@ -1,117 +1,158 @@
----
-id: html-to-powerpoint
-sidebar_label: HTML-to-PowerPoint
-title: HTML to PowerPoint
----
+# ÉQUIPE BLEUE – PRÉSENTATION FINALE CESIM (13 SLIDES)
+# Généré par Grok – Copie-colle dans PowerPoint ou Google Slides
+# Instructions : Crée un nouveau PPT → Colle chaque slide → Ajoute visuels manuellement (graphs simples via Insert > Chart)
 
-Reproduces an HTML table into 1 or more slides (auto-paging).
+--- SLIDE 1 : TITRE ---
+Layout: Titre + Sous-titre
+Titre: Cesim Global Challenge – Équipe Bleue
+Sous-titre: De la 5e à la 1re place… puis 2e. Leçons d’un géant presque invaincu.
+Image fond: Carte monde bleu + logo équipe (optionnel)
+Animation: Titre fade-in
 
-- Supported cell styling includes background colors, borders, fonts, padding, etc.
-- Slide margin settings can be set using options, or by providing a Master Slide definition
+--- SLIDE 2 : CONTEXTE & SYNTHÈSE ---
+Layout: Titre + Tableau
+Titre: Aperçu Global T1-T7
+Tableau (7 lignes):
+| Tour | CA (B$) | Profit (M$) | Parts (%) | Rang |
+|------|---------|-------------|-----------|------|
+| 1    | 0.8     | -150        | 10        | 5e   |
+| 2    | 1.8     | -25         | 24        | 3e   |
+| 3    | 2.2     | 334         | 25        | 2e   |
+| 4    | 2.9     | 757         | 30        | 1er  |
+| 5    | 3.2     | 471         | 31        | 1er  |
+| 6    | 3.9     | 814         | 31        | 1er  |
+| 7    | 3.5     | 463         | 28        | 2e   |
+Bullet: Cumul → CA 18.3B$ | Profit +2.66B$ | Parts moy. 26%
+Chart: Ligne CA + Parts (Insert > Chart > Line)
 
-Notes:
+--- SLIDE 3 : PRODUCTION ---
+Layout: Titre + 2 colonnes
+Titre: Politique de Production
+Colonne G: 
+- Focus USA interne T1-4
+- Shift Asie volume (9 usines T7)
+- Prod x8 (2k → 16k unités)
+Colonne D: 
+- Sous-traitance ↓ 30% → 16%
+- Capacité Asie 90-100%
+- Stocks ↓ 86k → 72k
+Chart: Barres empilées USA/Asie (Insert > Chart > Stacked Bar)
 
-- CSS styles are only supported down to the cell level (word-level formatting is not supported)
-- Nested tables are not supported in PowerPoint, therefore they cannot be reproduced (only the text will be included)
+--- SLIDE 4 : INVESTISSEMENT ---
+Layout: Titre + Bullets
+Titre: Politique d’Investissement
+Bullets:
+- R&D pic 1k ingénieurs T6 → 800 T7
+- Usines +12 Asie cumul
+- Coûts R&D ↓ 368M$ → 76M$ T7
+- ESG score 3.04 T7
+- ❌ Pas Tech 3/4
+Chart: Ligne multi (R&D, Usines, Coûts)
 
-## HTML to PowerPoint Syntax
+--- SLIDE 5 : MARKETING & DIVIDENDES ---
+Layout: Titre + 2 colonnes
+Titre: Marketing & Dividendes
+Colonne G:
+- Pricing bas Asie (Tech1 ~1000 RMB)
+- Pub 175-185M$ stable
+- Ventes Asie x6
+Colonne D:
+- Dividendes faibles early → 600M$ T7
+- Cumul ~1.5B$
+- Cours +16% T7
+Chart: Pie CA régions T7 (USA 46%, Asie 46%, Europe 8%)
 
-```javascript
-slide.tableToSlides(htmlElementID);
-slide.tableToSlides(htmlElementID, { OPTIONS });
-```
+--- SLIDE 6 : COMPTE DE RÉSULTAT ---
+Layout: Titre + Tableau
+Titre: Compte de Résultat T1-T7
+Tableau:
+| Tour | CA (B$) | EBITDA (B$) | Profit (M$) |
+|------|---------|-------------|-------------|
+| 1    | 0.8     | 0.1         | -150        |
+| 2    | 1.8     | 0.3         | -25         |
+| 3    | 2.2     | 0.6         | 334         |
+| 4    | 2.9     | 0.9         | 757         |
+| 5    | 3.2     | 0.9         | 471         |
+| 6    | 3.9     | 1.5         | 814         |
+| 7    | 3.5     | 1.0         | 463         |
+Chart: Ligne double CA + Profit
 
-## HTML to PowerPoint Options (`ITableToSlidesOpts`)
+--- SLIDE 7 : BILAN ---
+Layout: Titre + Bullets
+Titre: Bilan de Groupe (T7)
+Bullets:
+- Actifs: 3.8B$
+- Cash USA: 1.9B$
+- Fonds propres: 2.8B$
+- Dette nette: -43%
+- Cash x4 depuis T1
+Chart: Pie actifs (Cash 50%, Immo 40%)
 
-| Option               | Type    | Default | Description                                        | Possible Values                                                                         |
-| :------------------- | :------ | :------ | :------------------------------------------------- | :-------------------------------------------------------------------------------------- |
-| `x`                  | number  | `1.0`   | horizontal location (inches)                       | 0-256. Table will be placed here on each Slide                                          |
-| `y`                  | number  | `1.0`   | vertical location (inches)                         | 0-256. Table will be placed here on each Slide                                          |
-| `w`                  | number  | `100%`  | width (inches)                                     | 0-256.                                                                                  |
-| `h`                  | number  | `100%`  | height (inches)                                    | 0-256.                                                                                  |
-| `addHeaderToEach`    | boolean | `false` | add table headers to each slide                    | Ex: `{addHeaderToEach: true}`                                                           |
-| `addImage`           | string  |         | add an image to each slide                         | Ex: `{addImage: {image: {path: "images/logo.png"}, options: {x: 1, y: 1, w: 1, h: 1}}}` |
-| `addShape`           | string  |         | add a shape to each slide                          | Use the established syntax                                                              |
-| `addTable`           | string  |         | add a table to each slide                          | Use the established syntax                                                              |
-| `addText`            | string  |         | add text to each slide                             | Use the established syntax                                                              |
-| `autoPage`           | boolean | `true`  | create new slides when content overflows           | Ex: `{autoPage: false}`                                                                 |
-| `autoPageCharWeight` | number  | `0.0`   | character weight used to determine when lines wrap | -1.0 to 1.0. Ex: `{autoPageCharWeight: 0.5}`                                            |
-| `autoPageLineWeight` | number  | `0.0`   | line weight used to determine when tables wrap     | -1.0 to 1.0. Ex: `{autoPageLineWeight: 0.5}`                                            |
-| `colW`               | number  |         | table column widths                                | Array of column widths. Ex: `{colW: [2.0, 3.0, 1.0]}`                                   |
-| `masterSlideName`    | string  |         | master slide to use                                | [Slide Masters](#slide-masters) name. Ex: `{master: 'TITLE_SLIDE'}`                     |
-| `newSlideStartY`     | number  |         | starting location on Slide after initial           | 0-(slide height). Ex: `{newSlideStartY:0.5}`                                            |
-| `slideMargin`        | number  | `1.0`   | margins to use on Slide                            | Use a number for same TRBL, or use array. Ex: `{margin: [1.0,0.5,1.0,0.5]}`             |
+--- SLIDE 8 : RATIOS & CLASSEMENT ---
+Layout: Titre + Tableau
+Titre: Ratios & Classement
+Tableau:
+| Tour | ROE (%) | EBITDA Margin (%) | Rang |
+|------|---------|-------------------|------|
+| 1    | -15     | 12                | 5e   |
+| 2    | -2      | 16                | 3e   |
+| 3    | 23      | 27                | 2e   |
+| 4    | 34      | 31                | 1er  |
+| 5    | 18      | 29                | 1er  |
+| 6    | 26      | 39                | 1er  |
+| 7    | 15      | 28                | 2e   |
+Chart: Barres ROE (pic T4)
 
-## HTML to PowerPoint Table Options
+--- SLIDE 9 : CAUSES ÉCHECS ---
+Layout: Titre + Bullets
+Titre: Pourquoi les Mauvais Résultats ?
+Bullets:
+- T1-2: Pertes (-175M$) → overinvest
+- T7: CA -9%, parts -3.6 pts
+- Demande insatisfaite Asie +73%
+- Europe -27% (prix bas)
+- ❌ No Tech 3/4 | RH rotation 20%
+Chart: Ligne demande insatisfaite Asie
 
-Add an `data` attribute to the table's `<th>` tag to manually size columns (inches)
+--- SLIDE 10 : IMPACT ---
+Layout: Titre + Bullets
+Titre: Impact des Échecs
+Bullets:
+- Perdu #1 → Grey domine Tech4
+- Manqué ~600M$ profit T7
+- Cap boursière -10% potentiel
+Chart: Barres Bleue vs Grey T6-T7
 
-- minimum column width can be specified by using the `data-pptx-min-width` attribute
-- fixed column width can be specified by using the `data-pptx-width` attribute
+--- SLIDE 11 : SOLUTIONS APPLIQUÉES ---
+Layout: Titre + Bullets
+Titre: Solutions Efficaces
+Bullets:
+- R&D ↓20% T7 → +cash
+- Stocks nettoyés
+- +9 usines Asie → leader T6
+- Pricing Asie → +24% unités
+Image: Avant/après stocks (86k → 72k)
 
-Example:
+--- SLIDE 12 : WHAT IF & LEÇONS ---
+Layout: Titre + Bullets
+Titre: What If & Ce Qu’on Aurait Dû Faire
+Bullets:
+- What If: Tech3 T4 + usines early → +1B$ CA, #1
+- À faire: Diversifier T4 | +usines T5 | Prix Europe +20%
+- Leçon: Anticipation = victoire
+Chart: Ligne CA réel vs idéal
 
-```HTML
-<table id="tabAutoPaging" class="tabCool">
-  <thead>
-    <tr>
-      <th data-pptx-min-width="0.6" style="width: 5%">Row</th>
-      <th data-pptx-min-width="0.8" style="width:10%">Last Name</th>
-      <th data-pptx-min-width="0.8" style="width:10%">First Name</th>
-      <th data-pptx-width="8.5"     style="width:75%">Description</th>
-    </tr>
-  </thead>
-  <tbody></tbody>
-</table>
-```
+--- SLIDE 13 : CONCLUSION ---
+Layout: Titre + Bullets
+Titre: Conclusion & Bilan
+Bullets:
+- Succès: CA x4.4, cash x4, leader mid
+- Leçons: Diversification timing
+- SWOT: Asie ✅ | Tech late ❌
+- Merci ! Q&A
+Image: Photo équipe + contact
+Animation: Fade out
 
-## HTML to PowerPoint Notes
-
-- Your Master Slides should already have defined margins, so a Master Slide name is the only option you'll need most of the time
-- Hidden tables wont auto-size their columns correctly (as the properties are not accurate)
-
-## HTML to PowerPoint Examples
-
-```javascript
-// Pass table element ID to tableToSlides function to produce 1-N slides
-pptx.tableToSlides("myHtmlTableID");
-
-// Optionally, include a Master Slide name for pre-defined margins, background, logo, etc.
-pptx.tableToSlides("myHtmlTableID", { master: "MASTER_SLIDE" });
-
-// Optionally, add images/shapes/text/tables to each Slide
-pptx.tableToSlides("myHtmlTableID", {
-  addText: { text: "Dynamic Title", options: { x: 1, y: 0.5, color: "0088CC" } },
-});
-pptx.tableToSlides("myHtmlTableID", {
-  addImage: { path: "images/logo.png", x: 10, y: 0.5, w: 1.2, h: 0.75 },
-});
-```
-
-### HTML Table
-
-![HTML-to-PowerPoint Table](./assets/ex-html-to-powerpoint-1.png)
-
-### Resulting Slides
-
-![HTML-to-PowerPoint Presentation](./assets/ex-html-to-powerpoint-2.png)
-
-### Demos
-
-- Working example is available under [/demos](https://github.com/gitbrent/PptxGenJS/tree/master/demos)
-
-## HTML to PowerPoint Creative Solutions
-
-Design a Master Slide that already contains: slide layout, margins, logos, etc., then you can produce
-professional looking Presentations with a single line of code which can be embedded into a link or a button:
-
-Add a button to a webpage that will create a Presentation using whatever table data is present:
-
-```html
-<button onclick="{ var pptx=new PptxGenJS(); pptx.tableToSlides('tableId'); pptx.writeFile(); }" type="button">Export to PPTX</button>
-```
-
-## SharePoint Integration
-
-Placing a button like this into a WebPart is a great way to add "Export to PowerPoint" functionality
-to SharePoint. (You'd also need to add the PptxGenJS bundle `<script>` in that/another WebPart)
+# FIN PPT – 13 SLIDES
+# Temps total: 15 min | Thème: Bleu corporate | Police: Calibri
+# Pour générer réel PPT: Colle dans Google Slides → "Importer texte" ou utilise PptxGenJS en ligne.
